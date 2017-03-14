@@ -1,0 +1,42 @@
+body{
+	background-color: #bfe5ef;
+}
+.logo{
+	padding: 20px 20px 0 20px;
+	width: 98%;
+	text-align: center;
+}
+
+.logo-img{
+	max-width: 50%;
+}
+
+.sign-in{
+	padding-top: 30px; 
+}
+
+.navtab{
+	padding-top: 30px;
+}
+
+.paragraph{
+	padding-top: 6px;
+}
+
+.navtab{
+	text-align: center;
+}
+.paragraph{
+	padding-bottom: 20px;
+}
+.paragraph img{
+max-width: 50%;
+text-align: center;
+}
+
+.footer{
+	background-color: #bcb8b8;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-size: 75%;
+}
