@@ -1,0 +1,102 @@
+/*font-family: 'Questrial', sans-serif;*/
+/*font-family: 'Work Sans', sans-serif;*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+
+.head{
+    padding-top: 25px;
+}
+
+.logo-img{
+    padding: 10px;
+    height: 75px;
+    margin-left: 15px;
+    /*border: 2px solid darkslategrey;*/
+    border-radius: 8px;
+}
+
+.log-in{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 22px;
+}
+
+.mid-part{
+    padding-top: 105px;
+    padding-bottom:45px; 
+}
+.fixed-bar-left{
+     position:fixed;
+    width:12%;   
+}
+
+.right{
+      width:75%;
+    float:right;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin:0;
+}
+
+.menu-list li{
+    padding: 10px;
+}
+
+
+.menu-list a{
+    display: block;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 22px;
+}
+
+.menu-list li:hover{
+    text-decoration: none;
+    background-color: #ececec;
+    border-radius: 8px;
+      transition: 0.5s;
+}
+
+.menu-list li a:hover{
+    text-decoration: none;
+}
+.content{
+    background-color: #ececec;
+    border-radius: 15px;
+    min-height: 500px;
+}
+.some-text{
+    font-size: 18px;
+}
+
+.some-image-container{
+    padding: 30px 0; 
+}
+
+.some-image{
+    width: 500px;
+    border-radius: 15px;
+}
+
+.copyright{
+    font-family: 'Work Sans', sans-serif;
+    padding: 20px 0 0 15px; 
+}
+
+ul.my-info{
+    font-family: 'Work Sans', sans-serif;
+}
