@@ -1,0 +1,234 @@
+/* сброс стилей браузера */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1.2;
+}
+ol {
+    padding-left: 1.4em;
+    list-style: decimal;
+}
+ul {
+    padding-left: 1.4em;
+    list-style: square;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+*{
+    box-sizing: border-box;
+}
+/* конец кода сброса стилей браузера */
+
+
+body{
+    background-color: burlywood;
+    font-family: 'Josefin Sans', Helvetica, "Arial Narrow", sans-serif;
+    font-size: 16px;
+}
+.wrapper{
+    margin: 0 auto;
+    max-width: 95%;
+}
+.logo{
+    font-family: 'Tangerine', cursive;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+h1{
+    font-family: 'Sansita', sans-serif;
+    font-size: 3em;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h2{
+    font-family: 'Sansita', sans-serif;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    margin-left: 40px;
+}
+.logo,
+.log-in,
+.navigation,
+.main-content,
+footer{
+    border-radius: 5px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+}
+
+
+.logo,
+.log-in,
+.navigation,
+.main-content{
+    float: left;
+}
+
+header{
+    background-color: rgba(160, 82, 45, .3);
+    padding-bottom: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+.logo, .log-in{
+    margin: 10px 5px 0;
+}
+
+.navigation, .main-content{
+    margin: 10px 5px;
+}
+
+.logo, .navigation{
+    width: 18%;
+}
+
+.log-in, .main-content{
+    width: 80%;
+}
+
+.content{
+    margin-bottom: 20px;
+}
+
+.top-row div{
+    height: 60px;
+}
+
+.top-row div,
+.bottom-row div{
+
+    background-color: antiquewhite;
+}
+
+.top-row, .bottom-row{
+    width: 100%;
+}
+
+.logo{
+    text-align: center;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    display: block;
+}
+
+.log-in a{
+    margin-right: 40px;
+    margin-top: 10px;
+    padding: 10px 20px;
+
+}
+
+ul li, a{
+    display: block;
+}
+.navigation{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navigation h2{
+    margin: 0 auto;
+    width: 80px;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: sienna;
+}
+nav{
+    padding-top: 10px;
+}
+nav a{
+    width: 100px;
+    padding: 10px 0;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+nav a:hover, .log-in a{
+    color: chocolate;
+    background-color: rgba(150, 0, 0, .1);
+    border-radius: 5px;
+}
+
+.log-in{
+    position: relative;
+}
+
+.log-in a{
+    position: absolute;
+    right: 0;
+}
+
+.main-content h2{
+    padding-top: 10px;
+}
+
+img{
+    max-width: 600px;
+    max-height: 340px;
+}
+
+.right-side{
+    float: right;
+    padding: 15px 25px 0 15px;
+}
+
+.left-side{
+    float:left;
+    padding: 15px 15px 0 25px;
+}
+
+p{
+    font-size: 1.1em;
+    text-align: justify;
+    padding: 10px 25px 20px;
+}
+
+footer{
+    clear: both;
+    background-color: antiquewhite;
+    margin: 0 10px 10px;
+    height: 70px;
+    position: relative;
+}
+
+.copyright, .contact{
+    display: inline-block;
+    position:absolute;
+}
+
+.copyright{
+    top: 20%;
+}
+
+.contact{
+    top: 3px;
+}
+
+.contact p{
+    margin-left: 1050px;
+    padding: 0;
+}
