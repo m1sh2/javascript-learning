@@ -1,0 +1,120 @@
+
+*{
+	border-radius: 5px;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+}
+
+body{
+	display: inline-block;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	background-color: FFE4B3;
+
+}
+
+header{
+	display: flex;
+	height: 160px;
+	width: 100% - 100px;
+	margin: 30px 0px 10px 50px;
+	background-color: F5D395;
+}
+
+.logo{
+	height: 125px;
+	width: 250px;
+}
+
+.logo img{
+	border-radius: 5px;
+	margin: 20px;
+} 
+
+.login{
+	position: absolute;
+	width: auto;
+	right: 150px;
+	top: 30px;
+	bottom: auto;
+	background-color: F5D395;
+	padding: 20px;
+}
+
+/*.button{
+	background-color: DCDCDC;
+	text-align: center;
+	width: 40px;
+	padding: 10px;
+	margin: 10px;
+	position: right;
+	height: 15px;
+	border: 1px solid darkgrey;
+}*/
+
+input{
+	display: block;
+	margin: 3px;
+}
+
+.menu{	
+	width: 230px;
+	height: 771px;	
+	margin: 10px 5px 5px 50px;
+	vertical-align: top;
+	background-color: F5D395;
+	padding: 50px 30px;
+	display: inline-block;
+}
+
+.menu a{
+	text-decoration: none;
+}
+
+
+h2{
+	font-size: 30px;
+}
+
+.main{
+	display: inline-block;
+	margin-left:  10px;
+	margin-top: 10px;
+	padding: 50px;
+	background-color: F5D395;
+	width: 1000px;
+}
+
+.main img{
+	border: 10px;
+	size: auto;
+	border-radius: 0;
+}
+
+footer{
+	position: absolute;
+	display: inline-flex;
+	width: calc(100% - 155px);
+	margin: 10px 50px;
+	height: 110px;
+	background-color: F5D395;
+}
+
+.footerleft{
+	/*position: absolute;
+    width: 100px;*/
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 0;
+	width: 100%;
+	background-color: inherit;
+}
+
+.footerright{
+	position: absolute;
+	top: auto;
+	padding-top: 10px;
+	right: 50px;
+	background-color: inherit;
+}
