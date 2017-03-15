@@ -95,7 +95,7 @@ h2{
 footer{
 	position: absolute;
 	display: inline-flex;
-	width: calc(100% - 155px);
+	width: calc(100% - 174px);
 	margin: 10px 50px;
 	height: 110px;
 	background-color: F5D395;
