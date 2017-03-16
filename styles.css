@@ -1,0 +1,230 @@
+/* сброс стилей браузера */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1.2;
+}
+ol {
+    padding-left: 1.4em;
+    list-style: decimal;
+}
+ul {
+    padding-left: 1.4em;
+    list-style: square;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+*{
+    box-sizing: border-box;
+}
+/* конец кода сброса стилей браузера */
+
+html {
+    padding-top: 10px;
+    background-image: url(img/bg_page.png);
+}
+body {
+    font-family: 'Kurale', 'Arial Black', serif;
+    font-size: 16px;
+}
+
+.main {
+    margin: 0 auto;
+    max-width: 95%;
+}
+
+.logo,
+.log-in,
+.nav-menu,
+.content,
+footer {
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,.5);
+    background-color: #E1EDEB;
+}
+
+.logo,
+.log-in,
+.nav-menu,
+.content {
+    float: left;
+
+}
+
+.logo,
+.nav-menu {
+    width: 20%;
+}
+
+.log-in,
+.content {
+    width: 77%;
+}
+
+.top-block div {
+    height: 80px;
+}
+
+.bottom-block div{
+    margin-top: 20px;
+}
+
+.logo, .log-in{
+    margin: 10px 5px 0;
+}
+
+.nav-menu, 
+.content {
+    margin: 10px 5px;
+}
+
+.log-in {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.nav-menu {
+    margin-left: 5px;
+    padding: 10px;
+    text-align: center;
+    height: 200px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    display: block;
+}
+
+.log-in{
+    position: relative;
+}
+
+.log-in a{
+    position: absolute;
+    right: 0;
+    margin-right: 40px;
+    margin-top: 10px;
+    padding: 10px 20px;
+}
+
+a {
+    color: #666666;
+    font-family: 'Kurale', Helvetica, sans-serif;
+    text-transform: uppercase;
+   
+}
+
+a:hover {
+    color: #B1967C;
+    background-color: white;
+    border-radius: 5px;
+
+}
+
+li {
+    margin-top: 10px;
+}
+
+.content {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.logo {
+    text-align: center ;
+    padding-top: 10px;
+    font-size: 3em;
+    font-weight: bold;
+    color: #6A94CC;
+}
+
+p {
+   color: #666666;
+   font-family: 'Kurale', Helvetica, sans-serif;
+   font-size: 1.2em;
+   margin-left: 0;
+   margin-bottom: 25px;
+}
+
+h2 {
+  color: #B1967C;
+  font-family: 'Kurale', 'Arial Black', serif;
+  border-bottom: 2px white solid;
+  font-size: 1.3em;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+nav{
+    padding-top: 10px;
+}
+nav a {
+    width: 100px;
+    padding: 2px 0;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+footer {
+    margin-top: 20px;
+    clear: both;
+    height: 65px;
+    position: relative;
+    width: 99%;
+
+}
+
+.copyright p {
+    position: absolute;
+    left: 0;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.self-info div {
+    position: relative;
+}
+
+.self-info p {
+    position: absolute;
+    right: 0;
+    margin-right: 5px
+}
+
+img{
+    max-width: 600px;
+    max-height: 340px;
+}
+
+.right {
+    float: right;
+    padding: 15px 25px 0 15px;
+}
+
+.left {
+    float:left;
+    padding: 15px 15px 0 25px;
+}
