@@ -8,6 +8,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -19,22 +20,39 @@ body {
 .head{
     padding-top: 25px;
 }
+.navbar{
+    /*background-color: #4c74a1;*/
+    background-color: #82a14c;
+}
 
 .logo-img{
     padding: 10px;
     height: 75px;
     margin-left: 15px;
-    /*border: 2px solid darkslategrey;*/
     border-radius: 8px;
 }
 
-.log-in{
+.navbar-nav > li > a{
     font-family: 'Work Sans', sans-serif;
-    font-size: 22px;
+     font-size: 22px;
+    display: block;
+    margin-top: 10px;
+     color:#ffffff;
 }
 
-.mid-part{
-    padding-top: 105px;
+.navbar-nav > li > a:hover{
+    background-color: #728b45;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.log-in a:hover {
+    text-decoration: none;
+    background-color: #728b45;
+}
+
+.menu{
+    padding-top: 100px;
     padding-bottom:45px; 
 }
 .fixed-bar-left{
@@ -45,6 +63,11 @@ body {
 .right{
       width:75%;
     float:right;
+}
+
+
+.content-part{
+    margin-top:-44px;
 }
 
 ul{
@@ -62,13 +85,14 @@ ul{
     display: block;
     font-family: 'Work Sans', sans-serif;
     font-size: 22px;
+    color:#82a14c;
 }
 
 .menu-list li:hover{
     text-decoration: none;
     background-color: #ececec;
     border-radius: 8px;
-      transition: 0.5s;
+      transition: 0.3s;
 }
 
 .menu-list li a:hover{
@@ -77,10 +101,16 @@ ul{
 .content{
     background-color: #ececec;
     border-radius: 15px;
-    min-height: 500px;
+    min-height: 50px;
 }
-.some-text{
+
+.text-header{
+    padding: 10px 0 15px 25px;
+}
+
+.text{
     font-size: 18px;
+    padding-left: 20px;
 }
 
 .some-image-container{
@@ -100,3 +130,8 @@ ul{
 ul.my-info{
     font-family: 'Work Sans', sans-serif;
 }
+
+.copyright{
+    margin-top: 5px; 
+}
+
