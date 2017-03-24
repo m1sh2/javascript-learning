@@ -1,19 +1,36 @@
 
 function Data() {
   this.createData = function(key, data) {
+    key = key || prompt('Key:');
     data = data || prompt('Data:');
-    
-    // data = data ? data : prompt('Data:');
 
-    // if (typeof data === 'undefined') {
-    //   data = prompt('Data:');
-    // }
+    if (typeof key === 'undefined') {
+      console.error('No key');
+      return false;
+    }
+
+    if (typeof data === 'undefined') {
+      console.error('No data');
+      return false;
+    }
 
     localStorage.setItem(key, data);
   }
 
   this.readData = function(key) {
-    return localStorage.getItem(key);
+    if (typeof key === 'undefined') {
+      console.error('No data');
+      return false;
+    }
+
+    var data = localStorage.getItem(key);
+
+    if (!data) {
+      console.error('No data');
+      return false;
+    }
+
+    return data;
   }
 
   this.updateData = function(key, data) {
@@ -30,15 +47,9 @@ function Markup() {
     var element = document.createElement(tag);
     element.innerHTML = content;
 
-    document.getElementsByTagName('body')[0].appendChild(element);
+    document.body.appendChild(element);
   }
 }
 
 var data = new Data();
 var markup = new Markup();
-
-data.createData('a');
-
-var a = data.readData('a');
-
-markup.createMarkup('h1', a);
