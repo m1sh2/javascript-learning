@@ -1,14 +1,44 @@
 
-window.onload = function() {
-  var title = document.getElementById('page')
-    .querySelector('h1');
+function Data() {
+  this.createData = function(key, data) {
+    data = data || prompt('Data:');
+    
+    // data = data ? data : prompt('Data:');
 
-  console.info(title.innerHTML);
-  title.innerHTML = 'Hello';
-  console.info(title.innerHTML);
+    // if (typeof data === 'undefined') {
+    //   data = prompt('Data:');
+    // }
 
-  setTimeout(function() {
-    console.info('title change');
-    title.style.backgroundColor = 'blue';
-  }, 2000);
+    localStorage.setItem(key, data);
+  }
+
+  this.readData = function(key) {
+    return localStorage.getItem(key);
+  }
+
+  this.updateData = function(key, data) {
+    
+  }
+
+  this.deleteData = function(key) {
+    
+  }
 }
+
+function Markup() {
+  this.createMarkup = function(tag, content) {
+    var element = document.createElement(tag);
+    element.innerHTML = content;
+
+    document.getElementsByTagName('body')[0].appendChild(element);
+  }
+}
+
+var data = new Data();
+var markup = new Markup();
+
+data.createData('a');
+
+var a = data.readData('a');
+
+markup.createMarkup('h1', a);
