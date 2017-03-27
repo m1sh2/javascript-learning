@@ -1,17 +1,14 @@
 
-var a = {
-  A: function() {
-    console.info(this);
-  }
-};
+// var _console = console;
 
-function A() {
-  console.info(this);
+// function console() {
+//   _console.info(arguments);
+// }
+
+function A(a, b, c) {
+  console.info(typeof '', typeof b, typeof c, arguments);
 }
 
 A();
-a.A();
 
-var b = new A();
-console.info(b);
 
