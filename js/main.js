@@ -131,10 +131,15 @@ markup.createMarkup('aside', '<ul>\
 </ul>', '#app');
 markup.createMarkup(
   'article',
-  '<h1>Hello World!</h1>',
+  '',
   '#app',
   'content',
   'cnt'
+);
+markup.createMarkup(
+  'h1',
+  'Hello World!',
+  '#cnt'
 );
 markup.createMarkup(
   'footer',
