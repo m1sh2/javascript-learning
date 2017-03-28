@@ -73,27 +73,77 @@ function Data() {
 }
 
 function Markup() {
-  this.createMarkup = function(tag, content) {
-    var element = document.createElement(tag);
-    element.innerHTML = content;
+  
+}
+
+Markup.prototype.createMarkup = function(
+  tag,
+  content,
+  parent,
+  styleClass,
+  id
+) {
+  var element = document.createElement(tag);
+  element.innerHTML = content;
+
+  if (styleClass) {
+    element.className += styleClass;
+  }
+
+  if (id) {
+    element.id = id;
+  }
+
+  if (parent) {
+    var prnt = document.querySelector(parent);
+    if (!prnt) {
+      console.error('No element found');
+      return false;
+    }
+    prnt.appendChild(element);
+  } else {
     document.body.appendChild(element);
   }
+};
 
-  this.updateMarkup = function(query, content) {
-    var elements = this.findMarkup(query);
-    elements[0].innerHTML = content;
-  }
+Markup.prototype.updateMarkup = function(query, content) {
+  var elements = this.findMarkup(query);
+  elements[0].innerHTML = content;
+};
 
-  this.deleteMarkup = function(query) {
-    var elements = this.findMarkup(query);
-    elements[0].remove();
-  }
+Markup.prototype.deleteMarkup = function(query) {
+  var elements = this.findMarkup(query);
+  elements[0].remove();
+};
 
-  this.findMarkup = function(query) {
-    var elements = document.querySelectorAll(query);
-    return elements;
-  }
-}
+Markup.prototype.findMarkup = function(query) {
+  var elements = document.querySelectorAll(query);
+  return elements;
+};
 
 var data = new Data();
 var markup = new Markup();
+
+markup.createMarkup('header', 'Logo', '#app');
+markup.createMarkup('aside', '<ul>\
+<li><a href="#">Link1</a></li>\
+<li><a href="#">Link2</a></li>\
+</ul>', '#app');
+markup.createMarkup(
+  'article',
+  '<h1>Hello World!</h1>',
+  '#app',
+  'content',
+  'cnt'
+);
+markup.createMarkup(
+  'footer',
+  'Copyright 2017',
+  '#app',
+  'footer'
+);
+
+// native
+// jquery
+// backbone
+// angular

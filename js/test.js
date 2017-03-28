@@ -5,8 +5,11 @@
 //   _console.info(arguments);
 // }
 
-function A(a, b, c) {
-  console.info(typeof '', typeof b, typeof c, arguments);
+function A() {
+  function C() {
+    
+    console.info(this);
+  }
 }
 
 A();
