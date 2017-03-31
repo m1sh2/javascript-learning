@@ -72,6 +72,22 @@ function Data() {
   }
 }
 
+class Markup {
+  constructor() {
+
+  }
+
+  createMarkup() {
+
+  }
+
+  updateMarkup() {
+
+  }
+
+  ...
+}
+
 function Markup() {
   
 }
@@ -81,7 +97,8 @@ Markup.prototype.createMarkup = function(
   content,
   parent,
   styleClass,
-  id
+  id,
+  callback
 ) {
   var element = document.createElement(tag);
   element.innerHTML = content;
@@ -124,7 +141,9 @@ Markup.prototype.findMarkup = function(query) {
 var data = new Data();
 var markup = new Markup();
 
-markup.createMarkup('header', 'Logo', '#app');
+markup.createMarkup('header', 'Logo', '#app', function() {
+
+});
 markup.createMarkup('aside', '<ul>\
 <li><a href="#">Link1</a></li>\
 <li><a href="#">Link2</a></li>\
