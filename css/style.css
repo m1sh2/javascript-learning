@@ -39,3 +39,10 @@ aside {
 .footer {
   clear: both;
 }
+
+
+/* TODO */
+
+.checked {
+  text-decoration: line-through;
+}
