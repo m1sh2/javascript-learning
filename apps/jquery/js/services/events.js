@@ -2,6 +2,10 @@ function Events() {
   
 }
 
+Events.prototype.on = function(element, eventName, callback) {
+  element.addEventListener(eventName, callback, false);
+};
+
 Events.prototype.subscribe = function(eventName, callback) {
   document.addEventListener(eventName, callback, false);
 };
