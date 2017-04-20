@@ -31,10 +31,6 @@ ListTodos.prototype.getList = function() {
   todos.forEach(function(todo, index) {
     var $todo = $('<tr>');
 
-    if (todo.checked) {
-      $todo.addClass('success');
-    }
-
     var $todoCellCheckbox = $('<td/>');
     $todoCellCheckbox.width(30);
     $todoCellCheckbox.click(function(event) {
@@ -62,6 +58,11 @@ ListTodos.prototype.getList = function() {
       self.delete(index, todos);
     });
 
+    if (todo.checked) {
+      $todo.addClass('success');
+      $todoCellText.addClass('checked');
+    }
+
     $todoCellCheckbox.append($todoCheckbox);
     $todoCellActions.append($todoActionDelete);
     $todo.append($todoCellCheckbox);
@@ -88,7 +89,7 @@ ListTodos.prototype.doCheck = function(
     $todoCellText.removeClass('checked');
     todo.checked = false;
   } else {
-    $todoEl.addClass('success');
+    $todo.addClass('success');
     $todoCheckbox.removeClass('glyphicon glyphicon-unchecked');
     $todoCheckbox.addClass('glyphicon glyphicon-check');
     $todoCellText.addClass('checked');

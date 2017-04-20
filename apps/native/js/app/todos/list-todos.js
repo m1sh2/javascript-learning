@@ -48,7 +48,8 @@ ListTodos.prototype.getList = function() {
     var todoCellTextEl = markup.create({
       tag: 'td',
       parent: todoEl,
-      content: todo.text
+      content: todo.text,
+      className: todo.checked ? 'checked' : ''
     });
 
     var todoCellActionsEl = markup.create({
