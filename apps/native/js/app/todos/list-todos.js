@@ -101,9 +101,7 @@ ListTodos.prototype.getList = function() {
     });
 
     events.on(todoActionEditEl, 'click', function(event) {
-      var newTodoItem = prompt('Text:', todo.text);
-      console.log(newTodoItem, todo);
-      todo.text = newTodoItem;
+      self.edit(todos, todo, index);
     });
   });
 };
@@ -136,27 +134,12 @@ ListTodos.prototype.doCheck = function(
 };
 
 ListTodos.prototype.edit = function(
-  todoEl,
-  todoCheckboxEl,
-  todoCellTextEl,
   todos,
   todo,
   index
 ) {
-  var isChecked = todoCheckboxEl.className === 'glyphicon glyphicon-check'
-
-  if (isChecked) {
-    todoEl.className = '';
-    todoCheckboxEl.className = 'glyphicon glyphicon-unchecked';
-    todoCellTextEl.className = '';
-    todo.checked = false;
-  } else {
-    todoEl.className = 'success';
-    todoCheckboxEl.className = 'glyphicon glyphicon-check';
-    todoCellTextEl.className = 'checked';
-    todo.checked = true;
-  }
-
+  var newTodoItem = prompt('Text:', todo.text);
+  todo.text = newTodoItem;
   todos[index] = todo;
   data.update('todos', JSON.stringify(todos));
   events.send('get-todos-list');
