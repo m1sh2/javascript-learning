@@ -56,7 +56,7 @@ ListTodos.prototype.getList = function() {
       tag: 'td',
       parent: todoEl,
       attrs: [
-        { width: '30' }
+        { width: '65' }
       ]
     });
 
@@ -64,6 +64,16 @@ ListTodos.prototype.getList = function() {
       tag: 'span',
       className: 'glyphicon glyphicon-' + (todo.checked ? 'check' : 'unchecked'),
       parent: todoCellCheckboxEl
+    });
+
+    var todoActionEditEl = markup.create({
+      tag: 'button',
+      attrs: [
+        { type: 'button' }
+      ],
+      className: 'btn btn-info btn-xs',
+      content: '<span class="glyphicon glyphicon-pencil"></span>',
+      parent: todoCellActionsEl
     });
 
     var todoActionDeleteEl = markup.create({
@@ -88,6 +98,12 @@ ListTodos.prototype.getList = function() {
 
     events.on(todoActionDeleteEl, 'click', function(event) {
       self.delete(index, todos);
+    });
+
+    events.on(todoActionEditEl, 'click', function(event) {
+      var newTodoItem = prompt('');
+      console.log(newTodoItem, todo);
+      todo.text = newTodoItem;
     });
   });
 };
@@ -116,6 +132,34 @@ ListTodos.prototype.doCheck = function(
 
   todos[index] = todo;
   data.update('todos', JSON.stringify(todos));
+  events.send('get-todos-list');
+};
+
+ListTodos.prototype.edit = function(
+  todoEl,
+  todoCheckboxEl,
+  todoCellTextEl,
+  todos,
+  todo,
+  index
+) {
+  var isChecked = todoCheckboxEl.className === 'glyphicon glyphicon-check'
+
+  if (isChecked) {
+    todoEl.className = '';
+    todoCheckboxEl.className = 'glyphicon glyphicon-unchecked';
+    todoCellTextEl.className = '';
+    todo.checked = false;
+  } else {
+    todoEl.className = 'success';
+    todoCheckboxEl.className = 'glyphicon glyphicon-check';
+    todoCellTextEl.className = 'checked';
+    todo.checked = true;
+  }
+
+  todos[index] = todo;
+  data.update('todos', JSON.stringify(todos));
+  events.send('get-todos-list');
 };
 
 ListTodos.prototype.delete = function(index, todos) {

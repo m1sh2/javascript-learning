@@ -1,1 +1,18 @@
-<script src="js/main.js"></script>
+
+<div id="div">
+  <a href="/a">Click A</a>
+  <a href="b" target="_blank">Click B</a>
+</div>
+
+<!--<script src="apps/native/js/test.js"></script>-->
+<script>
+  var a = document.querySelectorAll('a');
+
+  for (var i = 0; i < a.length; i++) {
+    console.log({a: a[i]});
+    a[i].addEventListener('mouseover', function(event) {
+      event.preventDefault();
+      console.log(event.target.href);
+    });
+  }
+</script>
