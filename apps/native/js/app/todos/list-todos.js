@@ -101,7 +101,7 @@ ListTodos.prototype.getList = function() {
     });
 
     events.on(todoActionEditEl, 'click', function(event) {
-      var newTodoItem = prompt('');
+      var newTodoItem = prompt('Text:', todo.text);
       console.log(newTodoItem, todo);
       todo.text = newTodoItem;
     });
