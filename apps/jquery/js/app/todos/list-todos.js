@@ -46,7 +46,7 @@ ListTodos.prototype.getList = function() {
     });
 
     var $todoCellActions = $('<td/>');
-    $todoCellActions.width(30);
+    $todoCellActions.width(65);
 
     var $todoCheckbox = $('<span/>');
     $todoCheckbox.addClass('glyphicon glyphicon-' + (todo.checked ? 'check' : 'unchecked'));
@@ -55,8 +55,18 @@ ListTodos.prototype.getList = function() {
     $todoActionDelete.addClass('btn btn-danger btn-xs')
       .html('<span class="glyphicon glyphicon-remove"></span>')
       .click(function(event) {
-      self.delete(index, todos);
-    });
+        self.delete(index, todos);
+      });
+
+    var $todoActionEdit = $('<button type="button"/>');
+    $todoActionEdit.addClass('btn btn-info btn-xs')
+      .html('<span class="glyphicon glyphicon-pencil"></span>')
+      .click(function(event) {
+        events.send('edit-todo-item', {
+          todo: todo,
+          index: index
+        });
+      });
 
     if (todo.checked) {
       $todo.addClass('success');
@@ -64,6 +74,7 @@ ListTodos.prototype.getList = function() {
     }
 
     $todoCellCheckbox.append($todoCheckbox);
+    $todoCellActions.append($todoActionEdit);
     $todoCellActions.append($todoActionDelete);
     $todo.append($todoCellCheckbox);
     $todo.append($todoCellText);

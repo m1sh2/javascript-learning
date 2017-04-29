@@ -53,19 +53,11 @@ function AddTodo() {
 
   events.on(form, 'submit', function(event) {
     event.preventDefault();
-    self.add(form, addField, addButton);
-  });
-
-  events.subscribe('edit-todo-item', function(event) {
-    var details = event.detail;
-
-    if (!details.todo) { return }
-
-    self.edit(form, addField, addButton, details);
+    self.add(form, addField);
   });
 }
 
-AddTodo.prototype.add = function(form, addField, addButton) {
+AddTodo.prototype.add = function(form, addField) {
   var todos = data.read('todos');
   if (!todos) {
     todos = [];
@@ -74,59 +66,15 @@ AddTodo.prototype.add = function(form, addField, addButton) {
     todos = JSON.parse(todos);
   }
 
-  if (form.type && form.type.value === 'save' && form.index) {
-    todos[+form.index.value].text = addField.value;
-    form.type.remove();
-    form.index.remove();
-  } else {
-    todos.push({
-      text: addField.value,
-      checked: false
-    });
-  }
-
-  addButton.innerHTML = 'Add';
-
+  todos.push({
+    text: addField.value,
+    checked: false
+  });
   data.update('todos', JSON.stringify(todos));
 
   form.reset();
 
   events.send('get-todos-list');
-};
-
-AddTodo.prototype.edit = function(form, addField, addButton, details) {
-  if (!form.type) {
-    var typeField = markup.create({
-      tag: 'input',
-      attrs: [
-        { type: 'hidden' },
-        { name: 'type' },
-        { value: 'save' }
-      ],
-      className: 'form-control',
-      parent: form
-    });
-  } else {
-    form.type.value = 'save';
-  }
-
-  if (!form.index) {
-    var indexField = markup.create({
-      tag: 'input',
-      attrs: [
-        { type: 'hidden' },
-        { name: 'index' },
-        { value: details.index }
-      ],
-      className: 'form-control',
-      parent: form
-    });
-  } else {
-    form.index.value = details.index;
-  }
-
-  addButton.innerHTML = 'Save';
-  addField.value = details.todo.text;
 };
 
 var addTodo = new AddTodo();

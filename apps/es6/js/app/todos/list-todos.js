@@ -101,10 +101,7 @@ ListTodos.prototype.getList = function() {
     });
 
     events.on(todoActionEditEl, 'click', function(event) {
-      events.send('edit-todo-item', {
-        todo: todo,
-        index: index
-      });
+      self.edit(todos, todo, index);
     });
   });
 };
@@ -131,6 +128,18 @@ ListTodos.prototype.doCheck = function(
     todo.checked = true;
   }
 
+  todos[index] = todo;
+  data.update('todos', JSON.stringify(todos));
+  events.send('get-todos-list');
+};
+
+ListTodos.prototype.edit = function(
+  todos,
+  todo,
+  index
+) {
+  var newTodoItem = prompt('Text:', todo.text);
+  todo.text = newTodoItem;
   todos[index] = todo;
   data.update('todos', JSON.stringify(todos));
   events.send('get-todos-list');

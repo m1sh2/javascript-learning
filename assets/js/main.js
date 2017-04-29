@@ -8,6 +8,10 @@
     {
       title: 'jQuery',
       url: 'apps/jquery/index.html'
+    },
+    {
+      title: 'ES6',
+      url: 'apps/es6/index.html'
     }
   ];
 

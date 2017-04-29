@@ -5,23 +5,14 @@
 </div>
 
 <script src="vendors/jquery/jquery.js"></script>
+<script src="test.js"></script>
 <script>
-  $(document).ready(function() {
-    // var div = document.getElementById('div');
-    // Move();
-    // function Move() {
-    //   setTimeout(function() {
-        
-    //     var m = parseInt(div.style.marginLeft) || 0;
+class B extends A {
+  C() {
+    console.info(this.a);
+  }
+}
 
-    //     // console.log(m);
-    //     div.style.marginLeft = m + 1 + 'px';
-    //     Move();
-    //   }, 50);
-    // }
-
-    $('#div').animate({marginLeft: '600px', marginTop: '600px'}, 5000, function() {
-      $('#div').animate({marginLeft: '0px', marginTop: '0px'}, 5000);
-    });
-  });
+const a = new B('1234567');
+a.C();
 </script>
