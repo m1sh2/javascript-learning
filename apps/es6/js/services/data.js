@@ -1,5 +1,7 @@
-function Data() {
-  this.create = function(key, data) {
+
+class Data {
+
+  create(key, data) {
     key = key || prompt('Key:');
     data = data || prompt('Data:');
 
@@ -16,13 +18,13 @@ function Data() {
     localStorage.setItem(key, data);
   }
 
-  this.read = function(key) {
+  read(key) {
     if (typeof key === 'undefined') {
       console.error('No data');
       return false;
     }
 
-    var data = localStorage.getItem(key);
+    const data = localStorage.getItem(key);
 
     if (!data) {
       console.error('No data');
@@ -32,7 +34,7 @@ function Data() {
     return data;
   }
 
-  this.update = function(key, data) {
+  update(key, data) {
     key = key || prompt('Key:');
     data = data || prompt('Data:');
 
@@ -54,7 +56,7 @@ function Data() {
     localStorage.setItem(key, data);
   }
 
-  this.delete = function(key) {
+  delete(key) {
     key = key || prompt('Key:');
 
     if (typeof key === 'undefined') {
@@ -71,4 +73,4 @@ function Data() {
   }
 }
 
-var data = new Data();
+const data = new Data();

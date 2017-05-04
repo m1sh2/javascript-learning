@@ -1,6 +1,2 @@
-// native
-// jquery
-// backbone
-// angular
 
-var app = new App();
+const app = new App();

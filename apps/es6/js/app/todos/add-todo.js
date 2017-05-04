@@ -1,80 +1,131 @@
 
-function AddTodo() {
-  var self = this;
-  var row = markup.create({
-    className: 'row',
-    parent: '#todo_add'
-  });
+class AddTodo {
 
-  var cell = markup.create({
-    className: 'col-lg-12',
-    parent: row
-  });
-  
-  var form = markup.create({
-    tag: 'form',
-    attrs: [
-      { action: 'javascript:void(0)' },
-      { method: 'POST' }
-    ],
-    parent: cell
-  });
-  
-  var inputGroup = markup.create({
-    className: 'input-group',
-    parent: form
-  });
+  constructor() {
+    const row = markup.create({
+      className: 'row',
+      parent: '#todo_add'
+    });
 
-  var addField = markup.create({
-    tag: 'input',
-    attrs: [
-      { type: 'text' },
-      { placeholder: 'Todo text...' }
-    ],
-    className: 'form-control',
-    parent: inputGroup
-  });
+    const cell = markup.create({
+      className: 'col-lg-12',
+      parent: row
+    });
+    
+    const form = markup.create({
+      tag: 'form',
+      attrs: [
+        { action: 'javascript:void(0)' },
+        { method: 'POST' }
+      ],
+      parent: cell
+    });
+    
+    const inputGroup = markup.create({
+      className: 'input-group',
+      parent: form
+    });
 
-  var buttonGroup = markup.create({
-    tag: 'span',
-    className: 'input-group-btn',
-    parent: inputGroup
-  });
+    const addField = markup.create({
+      tag: 'input',
+      attrs: [
+        { type: 'text' },
+        { placeholder: 'Todo text...' }
+      ],
+      className: 'form-control',
+      parent: inputGroup
+    });
 
-  var addButton = markup.create({
-    tag: 'button',
-    attrs: [
-      { type: 'submit' }
-    ],
-    content: 'Add',
-    className: 'btn btn-primary',
-    parent: buttonGroup
-  });
+    const buttonGroup = markup.create({
+      tag: 'span',
+      className: 'input-group-btn',
+      parent: inputGroup
+    });
 
-  events.on(form, 'submit', function(event) {
-    event.preventDefault();
-    self.add(form, addField);
-  });
-}
+    const addButton = markup.create({
+      tag: 'button',
+      attrs: [
+        { type: 'submit' }
+      ],
+      content: 'Add',
+      className: 'btn btn-primary',
+      parent: buttonGroup
+    });
 
-AddTodo.prototype.add = function(form, addField) {
-  var todos = data.read('todos');
-  if (!todos) {
-    todos = [];
-    data.create('todos', JSON.stringify([]));
-  } else {
-    todos = JSON.parse(todos);
+    events.on(form, 'submit', event => {
+      event.preventDefault();
+      this.add(form, addField);
+    });
+
+    events.subscribe('edit-todo-item', event => {
+      var details = event.detail;
+
+      if (!details.todo) { return }
+
+      this.edit(form, addField, addButton, details);
+    });
   }
 
-  todos.push({
-    text: addField.value,
-    checked: false
-  });
-  data.update('todos', JSON.stringify(todos));
+  add(form, addField) {
+    let todos = data.read('todos');
 
-  form.reset();
+    if (!todos) {
+      todos = [];
+      data.create('todos', JSON.stringify([]));
+    } else {
+      todos = JSON.parse(todos);
+    }
 
-  events.send('get-todos-list');
-};
+    if (form.type && form.type.value === 'save' && form.index) {
+      todos[+form.index.value].text = addField.value;
+      form.type.remove();
+      form.index.remove();
+    } else {
+      todos.push({
+        text: addField.value,
+        checked: false
+      });
+    }
 
-var addTodo = new AddTodo();
+    data.update('todos', JSON.stringify(todos));
+
+    form.reset();
+
+    events.send('get-todos-list');
+  }
+
+  edit(form, addField, addButton, details) {
+    if (!form.type) {
+      var typeField = markup.create({
+        tag: 'input',
+        attrs: [
+          { type: 'hidden' },
+          { name: 'type' },
+          { value: 'save' }
+        ],
+        className: 'form-control',
+        parent: form
+      });
+    } else {
+      form.type.value = 'save';
+    }
+
+    if (!form.index) {
+      var indexField = markup.create({
+        tag: 'input',
+        attrs: [
+          { type: 'hidden' },
+          { name: 'index' },
+          { value: details.index }
+        ],
+        className: 'form-control',
+        parent: form
+      });
+    } else {
+      form.index.value = details.index;
+    }
+
+    addButton.innerHTML = 'Save';
+    addField.value = details.todo.text;
+  }
+}
