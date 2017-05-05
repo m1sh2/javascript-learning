@@ -12,19 +12,26 @@ const copy = require('gulp-copy');
 const sequence = require('run-sequence');
 
 const srcCSS = [
-  'assets/css/reset.css',
-  'vendors/bootstrap/css/bootstrap.css',
-  'vendors/bootstrap/css/bootstrap-theme.min.css',
-  'assets/css/style.css'
+  '../../assets/css/reset.css',
+  '../../vendors/bootstrap/css/bootstrap.css',
+  '../../vendors/bootstrap/css/bootstrap-theme.min.css',
+  '../../assets/css/style.css'
 ];
 const srcJS = [
-  'apps/es6/js/services/**/*.js',
-  'apps/es6/js/app/**/*.js',
-  'apps/es6/js/main.js'
+  './node_modules/jquery/dist/jquery.js',
+  './node_modules/lodash/lodash.js',
+  './node_modules/backbone/backbone.js',
+  './node_modules/backbone.localstorage/build/backbone.localStorage.js',
+  './js/models/**/*.js',
+  './js/collections/**/*.js',
+  './js/routers/**/*.js',
+  './js/views/**/*.js',
+  './js/main.js'
 ];
+const dist = './dist';
 
 gulp.task('clean', () => {
-  del(['apps/es6/dist/**/*']).then(paths => {});
+  del(['./dist/**/*']).then(paths => {});
 });
 
 gulp.task('build:css:prod', function() {
@@ -35,13 +42,13 @@ gulp.task('build:css:prod', function() {
       'uglyComments': true
     }))
     .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('apps/es6/dist'));
+    .pipe(gulp.dest(dist));
 });
 
 gulp.task('build:css:dev', function() {
   return gulp.src(srcCSS)
     .pipe(concat('app.css'))
-    .pipe(gulp.dest('apps/es6/dist'));
+    .pipe(gulp.dest(dist));
 });
 
 gulp.task('build:js:prod', () => {
@@ -54,18 +61,18 @@ gulp.task('build:js:prod', () => {
     .pipe(uglify())
     .pipe(minify())
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('apps/es6/dist'));
+    .pipe(gulp.dest(dist));
 });
 
 gulp.task('build:js:dev', () => {
   return gulp.src(srcJS)
     .pipe(concat('app.js'))
-    .pipe(gulp.dest('apps/es6/dist'));
+    .pipe(gulp.dest(dist));
 });
 
 gulp.task('fonts', () => {
-  return gulp.src('vendors/bootstrap/fonts/**/*')
-    .pipe(gulp.dest('apps/es6/dist/fonts'))
+  return gulp.src('../../vendors/bootstrap/fonts/**/*')
+    .pipe(gulp.dest(dist + '/fonts'))
 });
 
 gulp.task('build:prod', callback => {
@@ -76,5 +83,5 @@ gulp.task('build:dev', callback => {
 });
 
 gulp.task('watch', ['build:dev'], () => {
-  gulp.watch('apps/es6/js/**/*.js', ['build:dev']);
+  gulp.watch('./js/**/*.js', ['build:dev']);
 });

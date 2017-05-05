@@ -12,6 +12,10 @@
     {
       title: 'ES6',
       url: 'apps/es6/index.html'
+    },
+    {
+      title: 'Backbone',
+      url: 'apps/backbone/index.html'
     }
   ];
 
