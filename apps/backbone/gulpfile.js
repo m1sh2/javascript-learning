@@ -22,10 +22,10 @@ const srcJS = [
   './node_modules/lodash/lodash.js',
   './node_modules/backbone/backbone.js',
   './node_modules/backbone.localstorage/build/backbone.localStorage.js',
-  './js/models/**/*.js',
-  './js/collections/**/*.js',
-  './js/routers/**/*.js',
-  './js/views/**/*.js',
+  // './js/models/**/*.js',
+  // './js/collections/**/*.js',
+  // './js/routers/**/*.js',
+  // './js/views/**/*.js',
   './js/main.js'
 ];
 const dist = './dist';

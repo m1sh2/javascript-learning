@@ -29833,6 +29833,7 @@ module.exports = __webpack_require__(3);
 /***/ })
 /******/ ]);
 });
+
 var app = app || {};
 
 (function () {
@@ -29841,16 +29842,15 @@ var app = app || {};
   app.Todo = Backbone.Model.extend({
     defaults: {
       title: '',
-      completed: false
+      checked: false
     },
     toggle: function () {
       this.save({
-        completed: !this.get('completed')
+        checked: !this.get('checked')
       });
     }
   });
 })();
-var app = app || {};
 
 (function () {
   'use strict';
@@ -29872,227 +29872,98 @@ var app = app || {};
 
   app.todos = new Todos();
 })();
-/*global Backbone */
-var app = app || {};
 
-(function () {
+(function ($) {
   'use strict';
 
-  var TodoRouter = Backbone.Router.extend({
-    routes: {
-      '*filter': 'setFilter'
+  app.AddView = Backbone.View.extend({
+    el: '#todo_add',
+    template: _.template($('#template-add').html()),
+    events: {
+      'keypress .new-todo': 'addTodo',
+      'click #add_todo': 'addTodo'
     },
 
-    setFilter: function (param) {
-      app.TodoFilter = param || '';
-      app.todos.trigger('filter');
+    initialize: function () {
+      console.log('initialize', app.todos);
+      this.render();
+      return this;
+    },
+
+    render: function () {
+      console.log('render');
+      this.$el.html(this.template());
+      return this;
+    },
+
+    addTodo: function() {
+      console.log('addTodo', this.$el.find('#todo_input'));
+      var $input = this.$el.find('#todo_input');
+      app.todos.create({
+        title: $input.val(),
+        checked: false
+      });
+      $input.val('');
     }
   });
+})(jQuery);
 
-  app.TodoRouter = new TodoRouter();
-  Backbone.history.start();
-})();
-var app = app || {};
+(function ($) {
+  'use strict';
+
+  app.ListView = Backbone.View.extend({
+    el: '#todo_items',
+    template: _.template($('#template-list').html()),
+    initialize: function () {
+      console.log('initialize', app.todos);
+
+      this.listenTo(app.todos, 'add', this.addTodo);
+
+      app.todos.fetch({reset: true});
+      this.render();
+      return this;
+    },
+
+    render: function () {
+      console.log('render', app.todos.toJSON());
+      this.$el.html(this.template({
+        todos: app.todos.toJSON()
+      }));
+      return this;
+    },
+
+    addTodo: function (todo) {
+      console.log('addTodo', todo);
+      this.render();
+    }
+  });
+})(jQuery);
 
 (function ($) {
   'use strict';
 
   app.AppView = Backbone.View.extend({
-    el: '.todoapp',
-    statsTemplate: _.template($('#stats-template').html()),
-    events: {
-      'keypress .new-todo': 'createOnEnter',
-      'click .clear-completed': 'clearCompleted',
-      'click .toggle-all': 'toggleAllComplete'
-    },
-
+    el: '#app',
     initialize: function () {
-      this.allCheckbox = this.$('.toggle-all')[0];
-      this.$input = this.$('.new-todo');
-      this.$footer = this.$('.footer');
-      this.$main = this.$('.main');
-      this.$list = $('.todo-list');
-
-      this.listenTo(app.todos, 'add', this.addOne);
-      this.listenTo(app.todos, 'reset', this.addAll);
-      this.listenTo(app.todos, 'change:completed', this.filterOne);
-      this.listenTo(app.todos, 'filter', this.filterAll);
-      this.listenTo(app.todos, 'all', _.debounce(this.render, 0));
-
-      app.todos.fetch({reset: true});
-    },
-
-    render: function () {
-      var completed = app.todos.completed().length;
-      var remaining = app.todos.remaining().length;
-
-      if (app.todos.length) {
-        this.$main.show();
-        this.$footer.show();
-
-        this.$footer.html(this.statsTemplate({
-          completed: completed,
-          remaining: remaining
-        }));
-
-        this.$('.filters li a')
-          .removeClass('selected')
-          .filter('[href="#/' + (app.TodoFilter || '') + '"]')
-          .addClass('selected');
-      } else {
-        this.$main.hide();
-        this.$footer.hide();
-      }
-
-      this.allCheckbox.checked = !remaining;
-    },
-
-    addOne: function (todo) {
-      var view = new app.TodoView({ model: todo });
-      this.$list.append(view.render().el);
-    },
-
-    addAll: function () {
-      this.$list.html('');
-      app.todos.each(this.addOne, this);
-    },
-
-    filterOne: function (todo) {
-      todo.trigger('visible');
-    },
-
-    filterAll: function () {
-      app.todos.each(this.filterOne, this);
-    },
-
-    newAttributes: function () {
-      return {
-        title: this.$input.val().trim(),
-        order: app.todos.nextOrder(),
-        completed: false
-      };
-    },
-
-    createOnEnter: function (e) {
-      if (e.which === ENTER_KEY && this.$input.val().trim()) {
-        app.todos.create(this.newAttributes());
-        this.$input.val('');
-      }
-    },
-
-    clearCompleted: function () {
-      _.invoke(app.todos.completed(), 'destroy');
-      return false;
-    },
-
-    toggleAllComplete: function () {
-      var completed = this.allCheckbox.checked;
-
-      app.todos.each(function (todo) {
-        todo.save({
-          completed: completed
-        });
-      });
-    }
-  });
-})(jQuery);
-var app = app || {};
-
-(function ($) {
-  'use strict';
-
-  app.TodoView = Backbone.View.extend({
-    tagName:  'li',
-    template: _.template($('#item-template').html()),
-    events: {
-      'click .toggle': 'toggleCompleted',
-      'dblclick label': 'edit',
-      'click .destroy': 'clear',
-      'keypress .edit': 'updateOnEnter',
-      'keydown .edit': 'revertOnEscape',
-      'blur .edit': 'close'
-    },
-
-    initialize: function () {
-      this.listenTo(this.model, 'change', this.render);
-      this.listenTo(this.model, 'destroy', this.remove);
-      this.listenTo(this.model, 'visible', this.toggleVisible);
-    },
-
-    render: function () {
-      if (this.model.changed.id !== undefined) {
-        return;
-      }
-
-      this.$el.html(this.template(this.model.toJSON()));
-      this.$el.toggleClass('completed', this.model.get('completed'));
-      this.toggleVisible();
-      this.$input = this.$('.edit');
+      console.log('initialize');
+      this.render();
       return this;
     },
 
-    toggleVisible: function () {
-      this.$el.toggleClass('hidden', this.isHidden());
-    },
+    render: function () {
+      console.log('render');
+      this.addView = new app.AddView();
+      this.listView = new app.ListView();
 
-    isHidden: function () {
-      return this.model.get('completed') ?
-        app.TodoFilter === 'active' :
-        app.TodoFilter === 'completed';
-    },
-
-    toggleCompleted: function () {
-      this.model.toggle();
-    },
-
-    edit: function () {
-      this.$el.addClass('editing');
-      this.$input.focus();
-    },
-
-    close: function () {
-      var value = this.$input.val();
-      var trimmedValue = value.trim();
-
-      if (!this.$el.hasClass('editing')) {
-        return;
-      }
-
-      if (trimmedValue) {
-        this.model.save({ title: trimmedValue });
-      } else {
-        this.clear();
-      }
-
-      this.$el.removeClass('editing');
-    },
-
-    updateOnEnter: function (e) {
-      if (e.which === ENTER_KEY) {
-        this.close();
-      }
-    },
-
-    revertOnEscape: function (e) {
-      if (e.which === ESC_KEY) {
-        this.$el.removeClass('editing');
-
-        this.$input.val(this.model.get('title'));
-      }
-    },
-
-    clear: function () {
-      this.model.destroy();
+      this.$el.append(this.addView.render().$el);
+      this.$el.append(this.listView.render().$el);
+      return this;
     }
   });
 })(jQuery);
-var app = app || {};
-var ENTER_KEY = 13;
-var ESC_KEY = 27;
 
 $(function () {
   'use strict';
-  console.log(app);
-
+  console.log('app:', app);
   new app.AppView();
 });

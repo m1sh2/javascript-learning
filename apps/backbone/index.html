@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="dist/app.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="app">
     <div id="todo_add">
       
     </div>
@@ -13,49 +13,50 @@
     </table>
   </div>
 
-  <section class="todoapp">
-      <header class="header">
-        <h1>todos</h1>
-        <input class="new-todo" placeholder="What needs to be done?" autofocus>
-      </header>
-      <section class="main">
-        <input class="toggle-all" id="toggle-all" type="checkbox">
-        <label for="toggle-all">Mark all as complete</label>
-        <ul class="todo-list"></ul>
-      </section>
-      <footer class="footer"></footer>
-    </section>
-    <footer class="info">
-      <p>Double-click to edit a todo</p>
-      <p>Written by <a href="https://github.com/addyosmani">Addy Osmani</a></p>
-      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-    </footer>
-    <script type="text/template" id="item-template">
-      <div class="view">
-        <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-        <label><%- title %></label>
-        <button class="destroy"></button>
+  <!-- Templates -->
+  <!-- Add Todo Template -->
+  <script type="text/template" id="template-add">
+    <div class="row">
+      <div class="col-lg-12">
+        <form action="javascript:void(0)" method="POST">
+          <div class="input-group">
+            <input class="form-control" type="text" id="todo_input" placeholder="Todo text...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" id="add_todo" type="submit">Add</button>
+            </span>
+          </div>
+        </form>
       </div>
-      <input class="edit" value="<%- title %>">
-    </script>
-    <script type="text/template" id="stats-template">
-      <span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
-      <ul class="filters">
-        <li>
-          <a class="selected" href="#/">All</a>
-        </li>
-        <li>
-          <a href="#/active">Active</a>
-        </li>
-        <li>
-          <a href="#/completed">Completed</a>
-        </li>
-      </ul>
-      <% if (completed) { %>
-      <button class="clear-completed">Clear completed</button>
-      <% } %>
-    </script>
+    </div>
+  </script>
 
-  <script defer async src="dist/app.js"></script>
+  <!-- List Todos Template -->
+  <script type="text/template" id="template-list">
+    <tbody>
+      <% _.forEach(todos, function(todo) { %>
+      <tr>
+        <td width="30">
+          <span class="glyphicon glyphicon-unchecked"></span>
+        </td>
+        <td><%- todo.title %></td>
+        <td width="65">
+          <button class="btn btn-info btn-xs" type="button">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+          <button class="btn btn-danger btn-xs" type="button">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </script>
+
+  <!-- Scripts -->
+  <!--<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./node_modules/lodash/lodash.min.js"></script>
+  <script src="./node_modules/backbone/backbone-min.js"></script>
+  <script src="./node_modules/backbone.localstorage/build/backbone.localStorage.min.js"></script>-->
+  <script src="./dist/app.js"></script>
 </body>
 </html>
