@@ -1,2 +1,2 @@
 
-var app = angular.module('myApp', ['angularMoment']);
+var app = angular.module('JSLearnProject', []);

@@ -1,8 +1,8 @@
 app.controller('postsCtrl',
-  ['$scope', 'myService', function($scope, myService) {
+  ['$scope', 'getPostsService', function($scope, getPostsService) {
 
   console.log('postsCtrl');
-  $scope.posts = myService.getPosts();
+  $scope.posts = getPostsService.getPosts();
 
   $scope.title = 'Parent';
   $scope.url = 'http://parent.com';
