@@ -19,9 +19,15 @@
           <div ng-controller="postCtrl">
             <h2><a href="{{ url }}">{{ title }}</a></h2>
             <p>{{ description }}</p>
+
+            <form ng-submit="sendForm($event)">
+              <input type="text" />
+            </form>
           </div>
         </li>
       </ul>
+
+      
 
       <!--<div ng-controller="postCtrl">
             <h2><a href="{{ url }}">{{ title }}</a></h2>
