@@ -11,6 +11,8 @@
   "dependencies": {
     "angular": "^1.6.4",
     "angular-moment": "^1.0.1",
+    "angular-uuid": "0.0.4",
+    "cabit": "^0.1.0",
     "moment": "^2.18.1"
   }
 }

@@ -56,7 +56,7 @@ class ListTodos {
         tag: 'td',
         parent: todoEl,
         attrs: [
-          { width: '65' }
+          { width: '70' }
         ]
       });
 

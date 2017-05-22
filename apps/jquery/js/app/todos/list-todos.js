@@ -46,7 +46,7 @@ ListTodos.prototype.getList = function() {
     });
 
     var $todoCellActions = $('<td/>');
-    $todoCellActions.width(65);
+    $todoCellActions.width(70);
 
     var $todoCheckbox = $('<span/>');
     $todoCheckbox.addClass('glyphicon glyphicon-' + (todo.checked ? 'check' : 'unchecked'));
