@@ -18,9 +18,9 @@ const srcCSS = [
   '../../assets/css/style.css'
 ];
 const srcJS = [
-  './js/services/**/*.js',
-  './js/app/**/*.js',
-  './js/main.js'
+  './src/services/**/*.js',
+  './src/app/**/*.js',
+  './src/main.js'
 ];
 const dist = './dist';
 
@@ -77,5 +77,5 @@ gulp.task('build:dev', callback => {
 });
 
 gulp.task('watch', ['build:dev'], () => {
-  gulp.watch('./js/**/*.js', ['build:dev']);
+  gulp.watch('./src/**/*.js', ['build:dev']);
 });

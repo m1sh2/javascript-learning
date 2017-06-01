@@ -10,7 +10,7 @@ Markup.prototype.create = function(options) {
   // id
   // callback
 
-  optionsDefault = {
+  var optionsDefault = {
     tag: 'div',
     content: '',
     parent: 'body',
